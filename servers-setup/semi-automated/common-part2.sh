@@ -7,31 +7,21 @@ if (( $EUID != 0 )); then
 fi
 
 
-# ---------- Install CRI (CRI-O) ---------------
-apt-get update -qq && apt-get install -y \
-    libbtrfs-dev \
-    containers-common \
-    git \
-    libassuan-dev \
-    libglib2.0-dev \
-    libc6-dev \
-    libgpgme-dev \
-    libgpg-error-dev \
-    libseccomp-dev \
-    libsystemd-dev \
-    libselinux1-dev \
-    pkg-config \
-    go-md2man \
-    cri-o-runc \
-    libudev-dev \
-    software-properties-common \
-    gcc \
-    make
+apt-get install -y apt-transport-https ca-certificates curl gpg
+
+
+# ---------- Install CRI (containerd) ---------------
+apt update
+apt upgrade -y
+
+apt-get -y install containerd
+
+service containerd enable
+service containerd restart
 # --------------------------------------------------
 
 
 # ----- Installing kubeadm, kubelet and kubectl ------
-apt-get install -y apt-transport-https ca-certificates curl gpg
 
 
 # create directory "/etc/apt/keyrings" if not exists
