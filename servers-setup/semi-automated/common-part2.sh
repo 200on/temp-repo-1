@@ -35,7 +35,7 @@ apt-get install -y apt-transport-https ca-certificates curl gpg
 
 
 # create directory "/etc/apt/keyrings" if not exists
-keyrings_dir = "/etc/apt/keyrings"
+keyrings_dir="/etc/apt/keyrings"
 if [ -d $keyrings_dir ]
 then
     echo "Directory '$keyrings_dir' already exists"
