@@ -2,7 +2,7 @@
 #
 # Common setup for all servers (Control Plane and Nodes)
 
-set -euxo pipefail
+apt-get install sudo
 
 # Kuernetes Variable Declaration
 
