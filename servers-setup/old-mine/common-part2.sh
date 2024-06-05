@@ -7,25 +7,35 @@ if (( $EUID != 0 )); then
 fi
 
 
-apt-get install -y apt-transport-https ca-certificates curl gpg
-
-
-# ---------- Install CRI (containerd) ---------------
-apt update
-apt upgrade -y
-
-apt-get -y install containerd
-
-service containerd enable
-service containerd restart
+# ---------- Install CRI (CRI-O) ---------------
+apt-get update -qq && apt-get install -y \
+    libbtrfs-dev \
+    containers-common \
+    git \
+    libassuan-dev \
+    libglib2.0-dev \
+    libc6-dev \
+    libgpgme-dev \
+    libgpg-error-dev \
+    libseccomp-dev \
+    libsystemd-dev \
+    libselinux1-dev \
+    pkg-config \
+    go-md2man \
+    cri-o-runc \
+    libudev-dev \
+    software-properties-common \
+    gcc \
+    make
 # --------------------------------------------------
 
 
-# ----- Installing kubeadm, kubelet and kubectl ------
+# --- Installing kubeadm, kubelet and kubectl -----
+apt-get install -y apt-transport-https ca-certificates curl gpg
 
 
 # create directory "/etc/apt/keyrings" if not exists
-keyrings_dir="/etc/apt/keyrings"
+keyrings_dir = "/etc/apt/keyrings"
 if [ -d $keyrings_dir ]
 then
     echo "Directory '$keyrings_dir' already exists"
