@@ -3,6 +3,7 @@
 # Common setup for all servers (Control Plane and Nodes)
 
 apt-get install sudo
+apt install curl gnupg
 
 # Kuernetes Variable Declaration
 
@@ -18,7 +19,7 @@ sudo apt-get update -y
 
 # Install CRI-O Runtime
 
-OS="xUbuntu_22.04"
+OS="Debian_12"
 
 VERSION="1.28"
 
